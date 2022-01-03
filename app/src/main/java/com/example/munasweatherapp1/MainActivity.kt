@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         button.setOnClickListener {
             getWeather()
+            val searchInput = findViewById<EditText>(R.id.searchInput).text.clear()
         }
     }
 
@@ -37,11 +38,11 @@ class MainActivity : AppCompatActivity() {
                 var stringRequest = StringRequest(
                     Request.Method.POST, fullURL, { response ->
                         var results = gson.fromJson(response, Weather::class.java)
-                        findViewById<TextView>(R.id.temp).text = results.main.temp.toString()
+                        findViewById<TextView>(R.id.temp).text = results.main.temp.toInt().toString() + " ºc"
                         findViewById<TextView>(R.id.status).text = results.weather[0].main
                         findViewById<TextView>(R.id.address).text = results.name + ", " + results.sys.country
-                        findViewById<TextView>(R.id.temp_min).text = "Min Temp: " + results.main.temp_min + " C"
-                        findViewById<TextView>(R.id.temp_max).text = "Max Temp: " + results.main.temp_max + " C"
+                        findViewById<TextView>(R.id.temp_min).text = "Min Temp: " + results.main.temp_min + " ºC"
+                        findViewById<TextView>(R.id.temp_max).text = "Max Temp: " + results.main.temp_max + " ºC"
 
 
 
