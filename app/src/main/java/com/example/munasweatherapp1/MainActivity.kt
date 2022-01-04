@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -47,10 +48,14 @@ class MainActivity : AppCompatActivity() {
 
 
                     }, {
+                        Toast.makeText(this, "Something Wrong", Toast.LENGTH_SHORT).show()
                         println(it.message)
                     }
                 )
                 queue.add(stringRequest)
+            } else{
+                Toast.makeText(this, "Write Something!", Toast.LENGTH_SHORT).show()
+
             }
         }catch (err:Exception){
 
